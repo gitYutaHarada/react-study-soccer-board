@@ -1,14 +1,7 @@
 import classes from "@/components/Players/PlayerAll/PlayerInfo/playerInfo.module.css";
 
 export default async function PlayerInfo({ player }) {
-  console.log(player);
-
-  const {
-    name,
-    position,
-    dateOfBirth,
-    nationality
-  } = player;
+  const { name, position, dateOfBirth, nationality } = player;
 
   return (
     <div>
