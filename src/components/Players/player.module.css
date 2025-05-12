@@ -1,0 +1,11 @@
+.container {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+}
+.teamName {
+  font-size: large;
+  font-weight: 700; /* Tailwindの font-bold（bold = 700）に対応 */
+  margin-bottom: 1rem;
+}
