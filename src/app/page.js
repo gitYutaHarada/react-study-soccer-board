@@ -1,9 +1,10 @@
-import Players from "@/components/Players";
+import Components from "@/components";
 
 export default async function Home() {
   return (
     <>
-      <Players />
+      <strong>RealMadrid</strong>
+      <Components />
     </>
   );
 }
