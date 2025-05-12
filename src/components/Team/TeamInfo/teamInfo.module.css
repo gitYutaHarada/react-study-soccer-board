@@ -1,0 +1,19 @@
+.threeContainer {
+  margin-top: 50px;
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 30px;
+}
+
+.website {
+  margin: 100px auto 0px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.officialSite{
+    color: blue;
+    background-color:aquamarine ;
+}
