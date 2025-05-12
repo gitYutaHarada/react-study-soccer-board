@@ -1,10 +1,9 @@
-import Components from "@/components";
+import Header from "@/components/Header";
 
 export default async function Home() {
   return (
     <>
-      <strong>RealMadrid</strong>
-      <Components />
+      <Header />
     </>
   );
 }
