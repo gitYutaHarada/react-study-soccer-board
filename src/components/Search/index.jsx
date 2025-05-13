@@ -1,42 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import SearchByCompetition from "@/components/Search/SearchByCompetition";
-import SearchByArea from "@/components/Search/SearchByArea";
+import DisplaySearchOptionBtns from "@/components/Search/DisplaySearchOptionBtns";
+import DisplaySearchOption from "@/components/Search/DisplaySearchOption";
 
 const Search = () => {
-  const BTN_LIST = [{ label: "competition" }, { label: "area" }];
   const [activeBtn, setActiveBtn] = useState("");
-
-
-  const handleButton = async (btnLabel) => {
-    setActiveBtn(btnLabel);
-    if (btnLabel === "competition") {
-      const res = await fetch("https://api.football-data.org/v4/competitions", {
-        headers: { "X-Auth-Token": token },
-      });
-      const data = await res.json();
-
-      const competitions = data.competitions;
-      let conpetitionNames = [];
-      competitions.map((item) => {
-        const name = item.name;
-        conpetitionNames = [...conpetitionNames, name];
-      });
-    }
-  };
+  const [competitions, setCompetitions] = useState([]);
 
   return (
     <>
-      {BTN_LIST.map((btn) => {
-        return (
-          <button key={btn.label} onClick={() => handleButton(btn.label)}>
-            {btn.label}
-          </button>
-        );
-      })}
-      {activeBtn === "competition" && <SearchByCompetition />}
-      {activeBtn === "area" && <SearchByArea />}
+      <DisplaySearchOptionBtns
+        setActiveBtn={setActiveBtn}
+        setCompetitions={setCompetitions}
+      />
+      <DisplaySearchOption activeBtn={activeBtn} competitions={competitions} />
     </>
   );
 };
