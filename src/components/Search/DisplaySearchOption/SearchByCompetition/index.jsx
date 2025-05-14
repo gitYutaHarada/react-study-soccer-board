@@ -2,7 +2,12 @@ const SearchByCompetition = ({competitions}) => {
   return (
     <div>
       {competitions.map((name) => {
-        return <p key={name}>{name}</p>;
+        return (
+          <>
+            <button key={name}>{name}</button>
+            <br />
+          </>
+        );
       })}
     </div>
   );

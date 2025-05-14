@@ -3,11 +3,11 @@
 import SearchByArea from "@/components/Search/DisplaySearchOption/SearchByArea";
 import SearchByCompetition from "@/components/Search/DisplaySearchOption/SearchByCompetition";
 
-const DisplaySearchOption = ({ activeBtn, competitions}) => {
+const DisplaySearchOption = ({ activeBtn, competitions, areas }) => {
   if (activeBtn === "competitions") {
-    return <SearchByCompetition competitions={competitions}/>;
+    return <SearchByCompetition competitions={competitions} />;
   } else if (activeBtn === "area") {
-    return <SearchByArea />;
+    return <SearchByArea areas={areas} />;
   }
 };
 

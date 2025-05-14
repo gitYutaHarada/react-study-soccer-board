@@ -5,7 +5,7 @@ const Players = async () => {
   let data;
   try {
     const base = process.env.NEXT_PUBLIC_BASE_URL;
-    const res = await fetch(`${base}/api/player`);
+    const res = await fetch(`${base}/api/team`);
     data = await res.json();
   } catch (err) {
     console.error("API fetch error:", err);

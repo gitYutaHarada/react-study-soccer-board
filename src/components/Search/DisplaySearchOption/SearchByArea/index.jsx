@@ -1,7 +1,9 @@
-const SearchByArea = () => {
+const SearchByArea = ({ areas }) => {
   return (
     <div>
-      <p>area</p>
+      {areas.map((areaName) => {
+        return <p key={areaName}>{areaName}</p>;
+      })}
     </div>
   );
 };

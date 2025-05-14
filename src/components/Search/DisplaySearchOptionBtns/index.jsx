@@ -1,4 +1,8 @@
-const DisplaySearchOptionBtns = ({ setActiveBtn, setCompetitions }) => {
+const DisplaySearchOptionBtns = ({
+  setActiveBtn,
+  setCompetitions,
+  setAreas,
+}) => {
   const BTN_LIST = [{ label: "competitions" }, { label: "area" }];
 
   const handleButton = async (label) => {
@@ -9,6 +13,20 @@ const DisplaySearchOptionBtns = ({ setActiveBtn, setCompetitions }) => {
         const res = await fetch("/api/competitions");
         const data = await res.json();
         setCompetitions(data.competitions.map((item) => item.name));
+      } catch (err) {
+        console.error("API fetch error:", err);
+      }
+    } else if (label === "area") {
+      try {
+        const res = await fetch("/api/areas");
+        const data = await res.json();
+        let areas = [];
+        data.areas.forEach((area) => {
+          if (!areas.includes(area.parentArea)) {
+            areas = [...areas, area.parentArea];
+          }
+        });
+        setAreas(areas);
       } catch (err) {
         console.error("API fetch error:", err);
       }

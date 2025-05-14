@@ -11,14 +11,11 @@ export default async function Header() {
   let data;
   try {
     const base = process.env.NEXT_PUBLIC_BASE_URL;
-    const res = await fetch(`${base}/api/player`);
-    console.log("res: " + res);
+    const res = await fetch(`${base}/api/team`);
     data = await res.json();
   } catch (err) {
     console.error("API fetch error:", err);
   }
-  console.log("data: " + data);
-  console.log("name: " + data.name);
   const teamName = data.name;
   const imageUrl = data.crest;
   return (
