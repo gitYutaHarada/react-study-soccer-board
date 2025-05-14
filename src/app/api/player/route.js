@@ -6,7 +6,7 @@ export async function GET() {
     return NextResponse.json({ error: 'No token set' }, { status: 500 });
   }
 
-  const res = await fetch('https://api.football-data.org/v4/competitions', {
+  const res = await fetch('https://api.football-data.org/v4/teams/86', {
     headers: { 'X-Auth-Token': token },
   });
   if (!res.ok) {

@@ -8,11 +8,17 @@ const NAV_ITEMS = [
 ];
 
 export default async function Header() {
-  const token = process.env.FOOTBALL_DATA_API_TOKEN;
-  const res = await fetch("https://api.football-data.org/v4/teams/86", {
-    headers: { "X-Auth-Token": token },
-  });
-  const data = await res.json();
+  let data;
+  try {
+    const base = process.env.NEXT_PUBLIC_BASE_URL;
+    const res = await fetch(`${base}/api/player`);
+    console.log("res: " + res);
+    data = await res.json();
+  } catch (err) {
+    console.error("API fetch error:", err);
+  }
+  console.log("data: " + data);
+  console.log("name: " + data.name);
   const teamName = data.name;
   const imageUrl = data.crest;
   return (
