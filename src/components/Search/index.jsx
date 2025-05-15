@@ -7,6 +7,7 @@ import DisplaySearchOption from "@/components/Search/DisplaySearchOption";
 const Search = () => {
   const [activeBtn, setActiveBtn] = useState("");
   const [competitions, setCompetitions] = useState([]);
+  const [competitionCodes, setCompetitionCodes] = useState([]);
   const [areas, setAreas] = useState([]);
 
   return (
@@ -14,11 +15,13 @@ const Search = () => {
       <DisplaySearchOptionBtns
         setActiveBtn={setActiveBtn}
         setCompetitions={setCompetitions}
+        setCompetitionCodes={setCompetitionCodes}
         setAreas={setAreas}
       />
       <DisplaySearchOption
         activeBtn={activeBtn}
         competitions={competitions}
+        competitionCodes={competitionCodes}
         areas={areas}
       />
     </>

@@ -2,11 +2,12 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   const token = process.env.FOOTBALL_DATA_API_TOKEN;
+  const competition = searchParams.get('competition');
   if (!token) {
     return NextResponse.json({ error: 'No token set' }, { status: 500 });
   }
 
-  const res = await fetch('https://api.football-data.org/v4/teams/86', {
+  const res = await fetch(`https://api.football-data.org/v4/competitions/${competition}`, {
     headers: { 'X-Auth-Token': token },
   });
   if (!res.ok) {
