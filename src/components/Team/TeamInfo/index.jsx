@@ -10,8 +10,7 @@ const TeamInfo = ({ data }) => {
   const { name, flag } = area;
   const runningCompetitions = data.runningCompetitions;
   const coach = data.coach;
-  const website = data.website;
-  console.log(website);
+  const websiteURL = data.website;
   return (
     <>
       <div className={classes.threeContainer}>
@@ -30,11 +29,9 @@ const TeamInfo = ({ data }) => {
         <RunningCompetitions runningCompetitions={runningCompetitions} />
         <Coach coach={coach} />
       </div>
-      <div className={classes.website}>
-        <span className={classes.officialSite}>official site:{" "}</span>
-        <a href={website}>
-          {website}
-        </a>
+      <div className={classes.websiteURL}>
+        <span className={classes.officialSite}>official site: </span>
+        <a href={websiteURL}>{websiteURL}</a>
       </div>
     </>
   );
