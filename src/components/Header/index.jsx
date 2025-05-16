@@ -7,11 +7,11 @@ const NAV_ITEMS = [
   { href: "/player", label: "Player" },
 ];
 
-export default async function Header() {
+export default async function Header({ teamId }) {
   let data;
   try {
     const base = process.env.NEXT_PUBLIC_BASE_URL;
-    const res = await fetch(`${base}/api/team`);
+    const res = await fetch(`${base}/api/team?teamId=${teamId}`);
     data = await res.json();
   } catch (err) {
     console.error("API fetch error:", err);

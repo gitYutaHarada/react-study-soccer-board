@@ -13,12 +13,8 @@ const DisplaySearchOptionBtns = ({
       try {
         const res = await fetch("/api/competitions");
         const data = await res.json();
-        console.log(data);
         setCompetitions(data.competitions.map((item) => item.name));
         setCompetitionCodes(data.competitions.map((item) => item.code));
-        data.competitions.forEach((item) => {
-          console.log(item.code);
-        });
       } catch (err) {
         console.error("API fetch error:", err);
       }

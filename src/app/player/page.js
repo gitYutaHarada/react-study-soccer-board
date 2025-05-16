@@ -1,10 +1,18 @@
-import Header from "@/components/Header";
-import Players from "@/components/Players";
-export default async function PlayerPage() {
+"use client";
+
+import { useSearchParams } from "next/navigation";
+
+// import Header from "@/components/Header";
+// import Players from "@/components/Players";
+export default function PlayerPage() {
+  const searchParams = useSearchParams();
+  const teamId = searchParams.get("teamId");
+
   return (
     <>
-      <Header />
-      <Players />
+      {/* <Header /> */}
+      <p>{teamId}</p>
+      {/* <Players /> */}
     </>
   );
 }
