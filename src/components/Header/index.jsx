@@ -7,7 +7,8 @@ const NAV_ITEMS = [
   { href: "/player", label: "Player" },
 ];
 
-export default async function Header({ teamId }) {
+export default async function Header({ searchParams }) {
+  const { teamId } = await searchParams;
   let data;
   try {
     const base = process.env.NEXT_PUBLIC_BASE_URL;
@@ -23,18 +24,20 @@ export default async function Header({ teamId }) {
       <p className={classes.teamName}>{teamName}</p>
 
       <header className={classes.headerContainer}>
-        <Image
-          src={imageUrl}
-          alt="crest"
-          width={100}
-          height={60}
-          unoptimized
-        ></Image>
+        {imageUrl && (
+          <Image
+            src={imageUrl}
+            alt="crest"
+            width={100}
+            height={60}
+            unoptimized
+          />
+        )}
         {NAV_ITEMS.map((item) => {
           return (
             <Link
               key={item.label}
-              href={item.href}
+              href={`${item.href}?teamId=${teamId}`}
               className={classes.navItems}
             >
               {item.label}

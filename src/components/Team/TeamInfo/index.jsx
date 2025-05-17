@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import RunningCompetitions from "@/components/Team/TeamInfo/RunningCompetitions";
 import Coach from "@/components/Team/TeamInfo/Coach";
@@ -17,13 +16,9 @@ const TeamInfo = ({ data }) => {
         <div>
           <strong>area</strong>
           <p>{name}</p>
-          <Image
-            src={flag}
-            alt="flag"
-            width={100}
-            height={60}
-            unoptimized
-          ></Image>
+          {flag && (
+            <Image src={flag} alt="flag" width={100} height={60} unoptimized />
+          )}
         </div>
 
         <RunningCompetitions runningCompetitions={runningCompetitions} />
