@@ -3,6 +3,7 @@ const DisplaySearchOptionBtns = ({
   setCompetitions,
   setCompetitionCodes,
   setAreas,
+  setAreaIds,
 }) => {
   const BTN_LIST = [{ label: "competitions" }, { label: "area" }];
 
@@ -11,7 +12,7 @@ const DisplaySearchOptionBtns = ({
 
     if (label === "competitions") {
       try {
-        const res = await fetch("/api/competitions");
+        const res = await fetch("/api/competitions/");
         const data = await res.json();
         setCompetitions(data.competitions.map((item) => item.name));
         setCompetitionCodes(data.competitions.map((item) => item.code));
@@ -23,12 +24,18 @@ const DisplaySearchOptionBtns = ({
         const res = await fetch("/api/areas");
         const data = await res.json();
         let areas = [];
+        let areaIds = [];
+        console.log(data);
+
         data.areas.forEach((area) => {
-          if (!areas.includes(area.parentArea)) {
+          if (area.parentArea != null && !areas.includes(area.parentArea)) {
             areas = [...areas, area.parentArea];
+            areaIds = [...areaIds, area.parentAreaId];
           }
         });
+
         setAreas(areas);
+        setAreaIds(areaIds);
       } catch (err) {
         console.error("API fetch error:", err);
       }
