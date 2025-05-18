@@ -8,6 +8,7 @@ const DisplaySearchOption = ({
   competitions,
   competitionCodes,
   areas,
+  areaIds,
 }) => {
   if (activeBtn === "competitions") {
     return (
@@ -17,7 +18,7 @@ const DisplaySearchOption = ({
       />
     );
   } else if (activeBtn === "area") {
-    return <SearchByArea areas={areas} />;
+    return <SearchByArea areas={areas} areaIds={areaIds} />;
   }
 };
 

@@ -1,0 +1,24 @@
+import { NextResponse } from "next/server";
+
+export async function GET(request) {
+  const token = process.env.FOOTBALL_DATA_API_TOKEN;
+  const { searchParams } = new URL(request.url);
+  const childId = searchParams.get("childId");
+  if (!token) {
+    return NextResponse.json({ error: "No token set" }, { status: 500 });
+  }
+  const res = await fetch(
+    `https://api.football-data.org/v4/competitions?areas=${childId}`,
+    {
+      headers: { "X-Auth-Token": token },
+    }
+  );
+  if (!res.ok) {
+    return NextResponse.json({ error: "API error" }, { status: res.status });
+  }
+
+  const data = await res.json();
+  console.log(data);
+
+  return NextResponse.json(data);
+}

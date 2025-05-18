@@ -9,6 +9,7 @@ const Search = () => {
   const [competitions, setCompetitions] = useState([]);
   const [competitionCodes, setCompetitionCodes] = useState([]);
   const [areas, setAreas] = useState([]);
+  const [areaIds, setAreaIds] = useState([]);
 
   return (
     <>
@@ -17,12 +18,14 @@ const Search = () => {
         setCompetitions={setCompetitions}
         setCompetitionCodes={setCompetitionCodes}
         setAreas={setAreas}
+        setAreaIds={setAreaIds}
       />
       <DisplaySearchOption
         activeBtn={activeBtn}
         competitions={competitions}
         competitionCodes={competitionCodes}
         areas={areas}
+        areaIds={areaIds}
       />
     </>
   );
