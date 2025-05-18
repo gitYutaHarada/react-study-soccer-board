@@ -8,7 +8,6 @@ const Players = async ({ searchParams }) => {
     const base = process.env.NEXT_PUBLIC_BASE_URL;
     const res = await fetch(`${base}/api/team?teamId=${teamId}`);
     data = await res.json();
-    console.log(data);
   } catch (err) {
     console.error("API fetch error:", err);
   }

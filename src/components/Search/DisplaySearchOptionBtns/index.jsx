@@ -25,8 +25,6 @@ const DisplaySearchOptionBtns = ({
         const data = await res.json();
         let areas = [];
         let areaIds = [];
-        console.log(data);
-
         data.areas.forEach((area) => {
           if (area.parentArea != null && !areas.includes(area.parentArea)) {
             areas = [...areas, area.parentArea];

@@ -17,7 +17,6 @@ const DisplayTeams = ({ selectCompetition, selectTeams }) => {
               pathname: "/player",
               query: { teamId: team.id },
             }}
-            // replace や scroll オプションもここで指定可
           >
             {team.name}
           </Link>

@@ -13,7 +13,6 @@ const SearchByCompetition = ({ competitions, competitionCodes }) => {
     try {
       const res = await fetch(`/api/teams/competition?competition=${code}`);
       const data = await res.json();
-      console.log(data);
       setSelectCompetition(data.competition.name);
       setSelectTeams(data.teams);
     } catch (err) {
