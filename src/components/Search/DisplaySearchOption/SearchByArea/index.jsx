@@ -1,7 +1,10 @@
+import SearchByCompetition from "@/components/Search/DisplaySearchOption/SearchByCompetition";
 import { useState } from "react";
 
 const SearchByArea = ({ areas, areaIds }) => {
   const [childAreasData, setChildAreasData] = useState([]);
+  const [competitions, setCompetitions] = useState([]);
+  const [competitionCodes, setCompetitionCodes] = useState([]);
   const areaNameAndAreaId = areas.map((area, index) => ({
     area,
     areaId: areaIds[index],
@@ -22,6 +25,10 @@ const SearchByArea = ({ areas, areaIds }) => {
       const res = await fetch(`/api/teams/childArea?childId=${childId}`);
       const data = await res.json();
       console.log(data);
+      if (data.count > 0) {
+        setCompetitions(data.competitions.map((item) => item.name));
+        setCompetitionCodes(data.competitions.map((item) => item.code));
+      }
     } catch (err) {
       console.error("API fetch error:", err);
     }
@@ -43,6 +50,12 @@ const SearchByArea = ({ areas, areaIds }) => {
             </button>
           );
         })}
+      {competitions.length > 0 && (
+        <SearchByCompetition
+          competitions={competitions}
+          competitionCodes={competitionCodes}
+        />
+      )}
     </div>
   );
 };
