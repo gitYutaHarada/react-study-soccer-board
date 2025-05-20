@@ -1,11 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import classes from "@/components/Header/header.module.css";
-
-const NAV_ITEMS = [
-  { href: "/team", label: "Team" },
-  { href: "/player", label: "Player" },
-];
+import Nav from "@/components/Header/Nav";
 
 export default async function Header({ searchParams }) {
   const { teamId } = await searchParams;
@@ -33,17 +28,7 @@ export default async function Header({ searchParams }) {
             unoptimized
           />
         )}
-        {NAV_ITEMS.map((item) => {
-          return (
-            <Link
-              key={item.label}
-              href={`${item.href}?teamId=${teamId}`}
-              className={classes.navItems}
-            >
-              {item.label}
-            </Link>
-          );
-        })}
+        <Nav teamId={teamId} />
       </header>
     </>
   );
