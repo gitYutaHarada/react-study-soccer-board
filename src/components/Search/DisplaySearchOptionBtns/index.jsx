@@ -1,3 +1,5 @@
+import { useSelectSearchOption } from "@/hooks/useSelectSearchOption";
+
 const DisplaySearchOptionBtns = ({
   setActiveBtn,
   setCompetitions,
@@ -5,45 +7,10 @@ const DisplaySearchOptionBtns = ({
   setAreas,
   setAreaIds,
 }) => {
+  const { competitions, competitionCodes, areas, areaIds, selectSearchOption } =
+    useSelectSearchOption();
+
   const BTN_LIST = [{ label: "competitions" }, { label: "area" }];
-
-  const handleButton = async (label) => {
-    setActiveBtn(label);
-
-    if (label === "competitions") {
-      try {
-        const res = await fetch("/api/competitions/");
-        const data = await res.json();
-        setCompetitions(data.competitions.map((item) => item.name));
-        setCompetitionCodes(data.competitions.map((item) => item.code));
-      } catch (err) {
-        console.error("API fetch error:", err);
-      }
-    } else if (label === "area") {
-      try {
-        const res = await fetch("/api/areas");
-        const data = await res.json();
-        let areas = [];
-        let areaIds = [];
-        data.areas.forEach((area) => {
-          if (area.parentArea != null && !areas.includes(area.parentArea)) {
-            areas = [...areas, area.parentArea];
-            areaIds = [...areaIds, area.parentAreaId];
-          }
-        });
-
-        setAreas(areas);
-        setAreaIds(areaIds);
-      } catch (err) {
-        console.error("API fetch error:", err);
-      }
-    }
-  };
-
-  const selectSearchOption = (label) => {
-    setActiveBtn(label);
-    handleButton(label);
-  };
 
   return (
     <>
@@ -51,7 +18,16 @@ const DisplaySearchOptionBtns = ({
         return (
           <button
             key={btnItem.label}
-            onClick={() => selectSearchOption(btnItem.label)}
+            onClick={() =>
+              selectSearchOption(
+                setActiveBtn,
+                setCompetitions,
+                setCompetitionCodes,
+                setAreas,
+                setAreaIds,
+                btnItem.label
+              )
+            }
           >
             {btnItem.label}
           </button>
